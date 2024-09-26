@@ -1,7 +1,18 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import HomePageScreen from "./src/screens/HomePageScreen";
+import HomeScreen from "./src/screens/HomeScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
+import DetailProductScreen from "./src/screens/DetailProductScreen";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return <HomePageScreen />;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Detail" component={DetailProductScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }

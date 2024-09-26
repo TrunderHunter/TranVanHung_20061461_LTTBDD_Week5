@@ -10,7 +10,7 @@ import {
 import { Picker } from "@react-native-picker/picker";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
-const HomePageScreen = () => {
+const HomePageScreen = ({ navigation }: any) => {
   const [selectedColor, setSelectedColor] = React.useState("Màu xanh");
 
   return (
@@ -65,7 +65,12 @@ const HomePageScreen = () => {
 
         {/* Buy Button */}
         <TouchableOpacity style={styles.buyButton}>
-          <Text style={styles.buyButtonText}>CHỌN MUA</Text>
+          <Text
+            style={styles.buyButtonText}
+            onPress={() => navigation.navigate("Detail")}
+          >
+            CHỌN MUA
+          </Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
