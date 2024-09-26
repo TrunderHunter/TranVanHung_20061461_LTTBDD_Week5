@@ -102,18 +102,11 @@ const DetailProductScreen = ({ navigation, route }: any) => {
         {/* Confirm Button */}
         <TouchableOpacity
           style={styles.confirmButton}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() =>
+            navigation.navigate("Home", { selectedColor: selectedColor })
+          }
         >
-          <Text
-            style={styles.confirmButtonText}
-            onPress={() =>
-              navigation.navigate("Home", {
-                selectedColor: selectedColor,
-              })
-            }
-          >
-            XONG
-          </Text>
+          <Text style={styles.confirmButtonText}>XONG</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

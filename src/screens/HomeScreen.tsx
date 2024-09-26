@@ -76,17 +76,15 @@ const HomePageScreen = ({ navigation, route }: any) => {
         </View>
 
         {/* Buy Button */}
-        <TouchableOpacity style={styles.buyButton}>
-          <Text
-            style={styles.buyButtonText}
-            onPress={() =>
-              navigation.navigate("Detail", {
-                selectedColor: selectedColor,
-              })
-            }
-          >
-            CHỌN MUA
-          </Text>
+        <TouchableOpacity
+          style={styles.buyButton}
+          onPress={() =>
+            navigation.navigate("Detail", {
+              selectedColor: selectedColor,
+            })
+          }
+        >
+          <Text style={styles.buyButtonText}>CHỌN MUA</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
