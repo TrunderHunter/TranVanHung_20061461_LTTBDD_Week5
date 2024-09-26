@@ -10,15 +10,28 @@ import {
 import { Picker } from "@react-native-picker/picker";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
-const HomePageScreen = ({ navigation }: any) => {
-  const [selectedColor, setSelectedColor] = React.useState("Màu xanh");
+const HomePageScreen = ({ navigation, route }: any) => {
+  const [selectedColor, setSelectedColor] = React.useState("vs_blue");
+  React.useEffect(() => {
+    if (route.params?.selectedColor) {
+      setSelectedColor(route.params.selectedColor);
+    }
+  }, [route.params?.selectedColor]);
 
   return (
     <ScrollView style={styles.container}>
       {/* Product Image */}
       <View style={styles.imageContainer}>
         <Image
-          source={require("../assets/img/vs_blue.png")}
+          source={
+            selectedColor === "vs_blue" || selectedColor === "default"
+              ? require("../assets/img/vs_blue.png")
+              : selectedColor === "vs_red"
+              ? require("../assets/img/vs_red.png")
+              : selectedColor === "vs_silver"
+              ? require("../assets/img/vs_silver.png")
+              : require("../assets/img/vs_black.png")
+          }
           style={styles.productImage}
         />
       </View>
@@ -55,11 +68,10 @@ const HomePageScreen = ({ navigation }: any) => {
               itemIndex: any
             ) => setSelectedColor(itemValue)}
           >
-            <Picker.Item label="4 Màu - Chọn màu" value="default" />
-            <Picker.Item label="Màu xanh" value="Màu xanh" />
-            <Picker.Item label="Màu đen" value="Màu đen" />
-            <Picker.Item label="Màu trắng" value="Màu trắng" />
-            <Picker.Item label="Màu hồng" value="Màu hồng" />
+            <Picker.Item label="Màu xanh" value="vs_blue" />
+            <Picker.Item label="Màu đỏ" value="vs_red" />
+            <Picker.Item label="Màu bạc" value="vs_silver" />
+            <Picker.Item label="Màu đen" value="vs_black" />
           </Picker>
         </View>
 
@@ -67,7 +79,11 @@ const HomePageScreen = ({ navigation }: any) => {
         <TouchableOpacity style={styles.buyButton}>
           <Text
             style={styles.buyButtonText}
-            onPress={() => navigation.navigate("Detail")}
+            onPress={() =>
+              navigation.navigate("Detail", {
+                selectedColor: selectedColor,
+              })
+            }
           >
             CHỌN MUA
           </Text>
